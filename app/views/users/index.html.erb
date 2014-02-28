@@ -1,0 +1,19 @@
+<h3>Users</h3>
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user.email, user %>
+        </td>
+        <td>
+          <%= render user %>
+        </td>
+        <td>
+          <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger') unless user == current_user %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

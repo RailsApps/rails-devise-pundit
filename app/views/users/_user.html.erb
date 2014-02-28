@@ -1,0 +1,4 @@
+<%= form_for(user) do |f| %>
+  <%= f.select(:role, User.roles.keys.map {|role| [role,role]}) %>
+  <%= f.submit 'Change Role' %>
+<% end %>
