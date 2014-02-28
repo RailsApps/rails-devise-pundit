@@ -1,0 +1,7 @@
+h1. !http://railsapps.github.io/images/rails-36x36.jpg(Rails Devise Pundit)! Rails Devise Pundit
+
+Rails 4.1 example application that integrates Rails, Devise (for authentication), and Pundit (for authorization).
+
+Work in progress.
+
+Based on contributions by "Rakesh Jha":https://github.com/Jrakesh/.
