@@ -10,7 +10,7 @@
           <%= render user %>
         </td>
         <td>
-          <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger') unless user == current_user %>
+          <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete) unless user == current_user %>
         </td>
       </tr>
     <% end %>
