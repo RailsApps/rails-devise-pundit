@@ -361,7 +361,7 @@ For the Gmail username and password, enter the credentials you use to log in to 
 
 The values for @admin_email@ and @admin_password@ are used when the database is seeded. You will be able to log in to the application with these credentials. Note that it's not necessary to personalize the *config/secrets.yml* file before you deploy your app. You can deploy the app with an example user and then use the application's "Edit Account" feature to change email address and password after you log in. Use this feature to log in as an administrator and change the email and password to your own.
 
-h2. Roles
+h3. Roles
 
 Roles are defined in the *app/models/User.rb* file (the @User@ model).
 
@@ -379,6 +379,8 @@ class User < ActiveRecord::Base
 
 end
 </pre>
+
+You can change the available roles by changing the array @[:user, :vip, :admin]@.
 
 The application uses the ActiveRecord @enum@ method to manage roles. ActiveRecord provides convenient methods to query the role attribute:
 
