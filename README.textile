@@ -95,24 +95,6 @@ $ git clone git://github.com/RailsApps/rails-devise-pundit.git
 
 You'll need "git":http://git-scm.com/ on your machine. See "Rails and Git":http://railsapps.github.io/rails-git.html.
 
-h2. Getting the Application
-
-You have several options for getting the code. You can _fork_, _clone_, or _generate_.
-
-h3. Fork
-
-If you'd like to add features (or bug fixes) to improve the example application, you can fork the GitHub repo and "make pull requests":http://help.github.com/send-pull-requests/. Your code contributions are welcome!
-
-h3. Clone
-
-If you want to copy and customize the app with changes that are only useful for your own project, you can clone the GitHub repo. You'll need to search-and-replace the project name throughout the application. You probably should generate the app instead (see below). To clone:
-
-<pre>
-$ git clone git://github.com/RailsApps/rails-devise-pundit.git
-</pre>
-
-You'll need "git":http://git-scm.com/ on your machine. See "Rails and Git":http://railsapps.github.io/rails-git.html.
-
 h3. Generate
 
 If you want to use the project as a starter application, use the "Rails Composer":http://railsapps.github.io/rails-composer/ tool to generate a new version of the example app. You'll be able to give it your own project name when you generate the app. Generating the application gives you additional options.
@@ -140,9 +122,12 @@ Enter "1" to select *Build a RailsApps example application*. You'll see a prompt
 
 <pre>
 question  Starter apps for Rails 4.1. More to come.
-      1)  rails-omniauth
-      2)  rails-devise
-      3)  rails-devise-pundit
+      1)  learn-rails
+      2)  rails-bootstrap
+      3)  rails-foundation
+      4)  rails-omniauth
+      5)  rails-devise
+      6)  rails-devise-pundit
 </pre>
 
 Choose *rails-devise-pundit*. The Rails Composer tool may give you other options (other applications may have been added since these notes were written).
@@ -375,6 +360,35 @@ All configuration values in the *config/secrets.yml* file are available anywhere
 For the Gmail username and password, enter the credentials you use to log in to Gmail when you check your inbox. See the article "Send Email with Rails":http://railsapps.github.io/rails-send-email.html if you are using Google two factor authentication.
 
 The values for @admin_email@ and @admin_password@ are used when the database is seeded. You will be able to log in to the application with these credentials. Note that it's not necessary to personalize the *config/secrets.yml* file before you deploy your app. You can deploy the app with an example user and then use the application's "Edit Account" feature to change email address and password after you log in. Use this feature to log in as an administrator and change the email and password to your own.
+
+h2. Roles
+
+Roles are defined in the *app/models/User.rb* file (the @User@ model).
+
+<pre>
+class User < ActiveRecord::Base
+  .
+  .
+  .
+  enum role: [:user, :vip, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
+
+end
+</pre>
+
+The application uses the ActiveRecord @enum@ method to manage roles. ActiveRecord provides convenient methods to query the role attribute:
+
+<pre>
+user.admin! # sets the role to "admin"
+user.admin? # => true
+user.role  # => "admin"
+</pre>
+
+See documentation for "ActiveRecord::Enum":http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html for details.
 
 h3. Database Seed File
 
