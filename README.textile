@@ -56,11 +56,11 @@ h2. Similar Examples and Tutorials
 
 This is one in a series of Rails example apps and tutorials from the "RailsApps Project":http://railsapps.github.io/. See a list of additional "Rails examples, tutorials, and starter apps":http://railsapps.github.io/rails-examples-tutorials.html. Related example applications may be useful:
 
-* "Learn Rails":https://github.com/RailsApps/learn-rails shows how to add additional pages
+* "Learn Rails":https://github.com/RailsApps/learn-rails companion to the book "Learn Ruby on Rails":http://learn-rails.com/learn-ruby-on-rails.html
+* "Foundation and Rails":http://railsapps.github.io/rails-foundation/ shows how to integrate Foundation
 * "Bootstrap and Rails":http://railsapps.github.io/rails-bootstrap/ shows to integrate Bootstrap
-* "Foundation and Rails":https://github.com/RailsApps/rails-foundation shows to integrate Foundation
-* "OmniAuth and Rails":https://github.com/RailsApps/rails-omniauth shows to use OmniAuth for authentication
-* "Devise and Rails":https://github.com/RailsApps/rails-devise shows to use Devise for authentication
+* "OmniAuth and Rails":https://github.com/RailsApps/rails-omniauth uses OmniAuth for authentication
+* "Devise and Rails":https://github.com/RailsApps/rails-devise uses Devise for authentication
 
 h2. Accounts You Will Need
 
@@ -72,7 +72,7 @@ h2. Dependencies
 
 Before generating your application, you will need:
 
-* The Ruby language - version 2.1.1
+* The Ruby language - version 2.1
 * The Rails gem - version 4.1
 
 See the article "Installing Rails":http://railsapps.github.io/installing-rails.html for instructions about setting up Rails and your development environment.
@@ -341,25 +341,47 @@ The Sass mixins allow any view to be used with either Bootstrap or Foundation (s
 
 h3. Configuration File
 
-To keep some data private, and consolidate configuration settings in a single location, we store credentials in the *config/secrets.yml* file. Include the *config/secrets.yml* file in the *.gitignore* file to prevent the file from being saved in the git repository. See the article "Rails Environment Variables":http://railsapps.github.io/rails-environment-variables.html for more information.
+To consolidate configuration settings in a single location, we store credentials in the *config/secrets.yml* file. To keep your credentials private, use Unix environment variables to set your credentials. See the article "Rails Environment Variables":http://railsapps.github.io/rails-environment-variables.html for more information.
 
 Add your credentials to the file *config/secrets.yml*:
 
 <pre>
+# Make sure the secrets in this file are kept private
+# if you're sharing your code publicly.
+
 development:
   admin_name: First User
   admin_email: user@example.com
   admin_password: changeme
-  gmail_username: Your_Username
-  gmail_password: Your_Password
-  secret_key_base: (not shown)
+  email_provider_username: <%= ENV["GMAIL_USERNAME"] %>
+  email_provider_password: <%= ENV["GMAIL_PASSWORD"] %>
+  domain_name: example.com
+  secret_key_base: very_long_random_string
+
+test:
+  secret_key_base: very_long_random_string
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  admin_name: <%= ENV["ADMIN_NAME"] %>
+  admin_email: <%= ENV["ADMIN_EMAIL"] %>
+  admin_password: <%= ENV["ADMIN_PASSWORD"] %>
+  email_provider_username: <%= ENV["GMAIL_USERNAME"] %>
+  email_provider_password: <%= ENV["GMAIL_PASSWORD"] %>
+  domain_name: <%= ENV["DOMAIN_NAME"] %>
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 </pre>
 
-All configuration values in the *config/secrets.yml* file are available anywhere in the application as variables. For example, @Rails.application.secrets.gmail_username@ will return the string "Your_Username". If you wish, you can obtain each value from an environment variable in the Unix shell. For example, @gmail_username: <%= ENV["GMAIL_USERNAME"] %>@.
+All configuration values in the *config/secrets.yml* file are available anywhere in the application as variables. For example, @Rails.application.secrets.email_provider_username@ will return the string set in the Unix environment variable @GMAIL_USERNAME@.
 
 For the Gmail username and password, enter the credentials you use to log in to Gmail when you check your inbox. See the article "Send Email with Rails":http://railsapps.github.io/rails-send-email.html if you are using Google two factor authentication.
 
 The values for @admin_email@ and @admin_password@ are used when the database is seeded. You will be able to log in to the application with these credentials. Note that it's not necessary to personalize the *config/secrets.yml* file before you deploy your app. You can deploy the app with an example user and then use the application's "Edit Account" feature to change email address and password after you log in. Use this feature to log in as an administrator and change the email and password to your own.
+
+The variable @domain_name@ is used for sending email. You can use @example.com@ in development. If you already have a custom domain name you'll use when you deploy the application, you can set @domain_name@. If you deploy the application to Heroku, you'll set @domain_name@ with the unique name you've given your application on Heroku. You'll have to wait until you deploy to know the name you'll use on Heroku.
+
+If you don't want to use Unix environment variables, you can set each value directly in the *config/secrets.yml* file. The file must be in your git repository when you deploy to Heroku. However, you shouldn't save the file to a public GitHub repository where other people can see your credentials.
 
 h3. Roles
 
@@ -479,7 +501,10 @@ $ git push origin master
 If you've set configuration values in the *config/secrets.yml* file, you'll need to set them as Heroku environment variables. You can set Heroku environment variables directly with @heroku config:add@. For example:
 
 <pre>
+$ heroku config:add ADMIN_NAME='First User'
+$ heroku config:add ADMIN_EMAIL='user@example.com' ADMIN_PASSWORD='changeme'
 $ heroku config:add GMAIL_USERNAME='myname@gmail.com' GMAIL_PASSWORD='secret'
+$ heroku config:add DOMAIN_NAME='example.com'
 </pre>
 
 Complete Heroku deployment with:
@@ -502,7 +527,7 @@ h2. Where to Get Help
 
 Your best source for help with problems is "Stack Overflow":http://stackoverflow.com/questions/tagged/ruby-on-rails-3. Your issue may have been encountered and addressed by others.
 
-You can also try "Rails Hotline":http://www.railshotline.com/, a free telephone hotline for Rails help staffed by volunteers.
+Use the tag "railsapps" on Stack Overflow for extra attention.
 
 h2. Contributing
 
