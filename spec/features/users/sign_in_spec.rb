@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 # Feature: Sign in
 #   As a user
 #   I want to sign in

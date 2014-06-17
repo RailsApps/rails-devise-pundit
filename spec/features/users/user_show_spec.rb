@@ -1,4 +1,3 @@
-require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
@@ -7,6 +6,10 @@ Warden.test_mode!
 #   I want to visit my user profile page
 #   So I can see my personal account data
 feature 'User profile page', :devise do
+
+  after(:each) do
+    Warden.test_reset!
+  end
 
   # Scenario: User sees own profile
   #   Given I am signed in
