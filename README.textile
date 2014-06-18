@@ -6,7 +6,7 @@ Rails 4.1 example application that provides user management, authentication, and
 * "Pundit":https://github.com/elabs/pundit for authorization
 * "Bootstrap":http://getbootstrap.com/ or "Foundation":http://foundation.zurb.com/ front-end frameworks
 
-Use this example application as a starter app for your own web applications.
+Use this example application as a starter app for your own web applications. A complete "Pundit Tutorial":http://railsapps.github.io/rails-devise-pundit/ is available.
 
 You can build this application in only a few minutes using the "Rails Composer":http://railsapps.github.io/rails-composer/ tool, choosing either a Bootstrap or Foundation front-end framework, as well as many other options, such as Haml or Slim.
 
@@ -33,7 +33,7 @@ This application extends the "rails-devise":https://github.com/RailsApps/rails-d
 * Edit account (edit user profile)
 * List of users
 
-This application adds authorization with Pundit, showing how to implement user roles, and limit access to pages based on user role. With this application:
+This "rails-devise-pundit":https://github.com/RailsApps/rails-devise-pundit example application adds authorization with Pundit, showing how to implement user roles, and limit access to pages based on user role. With this application:
 
 * an admin can see a list of users
 * an admin can change a user's role
@@ -50,7 +50,7 @@ The application requires a database. The example application uses SQLite with Ra
 
 h4. Front-end Framework
 
-The example application (here in the GitHub repository) includes simple CSS for a navigation bar and flash messages. The "rails_layout":https://github.com/RailsApps/rails_layout gem is included so you can add the Bootstrap or Foundation front-end frameworks.
+The example application (here in the GitHub repository) integrates Bootstrap for a navigation bar and flash messages. The "rails_layout":https://github.com/RailsApps/rails_layout gem is included so you can switch to the Foundation front-end framework.
 
 h2. Similar Examples and Tutorials
 
@@ -251,7 +251,7 @@ h3. Gems
 
 Here are the gems used by the application:
 
-* "Devise":http://github.com/plataformatec/devise - authentication and user management
+* "Devise":http://github.com/plataformatec/devise for authentication and user management
 * "Pundit":https://github.com/elabs/pundit for authorization
 
 These gems make development easier:
@@ -474,6 +474,14 @@ Log in with the first account (the admin account). Click the "Users" link. You'l
 You've seen a simple demonstration of access control.
 
 Stop the server with Control-C. If you test the app by starting the web server and then leave the server running while you install new gems, you’ll have to restart the server to see any changes. The same is true for changes to configuration files in the config folder. This can be confusing to new Rails developers because you can change files in the app folders without restarting the server. Stop the server each time after testing and you will avoid this issue.
+
+h3. RSpec Test Suite
+
+The application contains a suite of RSpec tests. To run:
+
+<pre>
+$ rspec
+</pre>
 
 h2. Deploy to Heroku
 
