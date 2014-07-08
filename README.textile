@@ -6,7 +6,15 @@ Rails 4.1 example application that provides user management, authentication, and
 * "Pundit":https://github.com/elabs/pundit for authorization
 * "Bootstrap":http://getbootstrap.com/ or "Foundation":http://foundation.zurb.com/ front-end frameworks
 
-Use this example application as a starter app for your own web applications. A complete "Pundit Tutorial":http://railsapps.github.io/rails-devise-pundit/ is available.
+Use this example application as a starter app for your own web applications. The application is based on a simpler example application:
+
+* "rails-devise":https://github.com/RailsApps/rails-devise
+
+For a complete explanation of the code, see the tutorials:
+
+* "Rails and Pundit":http://railsapps.github.io/rails-devise-pundit/
+* "Rails and Devise":http://railsapps.github.io/rails-devise/
+* "RSpec Tutorial":http://railsapps.github.io/rspec.html
 
 You can build this application in only a few minutes using the "Rails Composer":http://railsapps.github.io/rails-composer/ tool, choosing either a Bootstrap or Foundation front-end framework, as well as many other options, such as Haml or Slim.
 
