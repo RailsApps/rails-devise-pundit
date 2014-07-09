@@ -221,7 +221,7 @@ If you are a beginner, select "None."
 
 h4. Front-end Framework
 
-The example in the GitHub repository was built without a front-end framework. Use Bootstrap 3.0 or Zurb Foundation 5.0 if you like. Choosing either Bootstrap or Foundation will automatically install views with attractive styling.
+The example in the GitHub repository was built with the Bootstrap 3 front-end framework. Use Zurb Foundation 5.0 if you like. Choosing either Bootstrap or Foundation will automatically install views with attractive styling.
 
 h4. Email
 
