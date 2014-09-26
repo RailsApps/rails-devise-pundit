@@ -1,5 +1,7 @@
 h1. !http://railsapps.github.io/images/rails-36x36.jpg(Rails Devise Pundit)! Rails Devise Pundit
 
+"!https://www.herokucdn.com/deploy/button.png(Deploy to Heroku)!":https://heroku.com/deploy
+
 Rails 4.1 example application that provides user management, authentication, and authorization. The application shows how to integrate:
 
 * "Devise":https://github.com/plataformatec/devise for user management and authentication
@@ -492,7 +494,17 @@ $ rspec
 
 h2. Deploy to Heroku
 
-For your convenience, here is a "Tutorial for Rails on Heroku":http://railsapps.github.io/rails-heroku-tutorial.html. Heroku provides low cost, easily configured Rails application hosting.
+Heroku provides low cost, easily configured Rails application hosting.
+
+h4. One Click Deployment
+
+For one-click deployment, click the button to deploy to Heroku:
+
+"!https://www.herokucdn.com/deploy/button.png(Deploy to Heroku)!":https://heroku.com/deploy
+
+h4. From the Command Line
+
+Alternatively, you can deploy from the command line.
 
 You'll need to precompile assets before you commit to git and push to Heroku:
 
