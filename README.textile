@@ -2,7 +2,7 @@ h1. !http://railsapps.github.io/images/rails-36x36.jpg(Rails Devise Pundit)! Rai
 
 "!https://www.herokucdn.com/deploy/button.png(Deploy to Heroku)!":https://heroku.com/deploy "!https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-3cc067e71372f6045e1949af9d96095b.png(Hack RailsApps on Nitrous.IO)!":https://www.nitrous.io/hack_button?source=embed&runtime=rails&repo=RailsApps%2Frails-devise-pundit&file_to_open=nitrous.txt
 
-Rails 4.1 example application that provides user management, authentication, and authorization. The application shows how to integrate:
+Rails 4.2 example application that provides user management, authentication, and authorization. The application shows how to integrate:
 
 * "Devise":https://github.com/plataformatec/devise for user management and authentication
 * "Pundit":https://github.com/elabs/pundit for authorization
@@ -81,8 +81,8 @@ h2. Dependencies
 
 Before generating your application, you will need:
 
-* The Ruby language - version 2.1
-* The Rails gem - version 4.1
+* The Ruby language - version 2.2
+* The Rails gem - version 4.2
 
 See the article "Installing Rails":http://railsapps.github.io/installing-rails.html for instructions about setting up Rails and your development environment.
 
@@ -110,7 +110,7 @@ h4. Generate
 
 If you want to use the project as a starter application, use the "Rails Composer":http://railsapps.github.io/rails-composer/ tool to generate a new version of the example app. You'll be able to give it your own project name when you generate the app. Generating the application gives you additional options.
 
-To build the example application, Rails 4.1 must be installed in your development environment. Run the command:
+To build the example application, Rails 4.2 must be installed in your development environment. Run the command:
 
 <pre>
 $ rails new rails-devise-pundit -m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
@@ -123,22 +123,26 @@ This creates a new Rails app named @rails-devise-pundit@ on your computer. You c
 You'll see a prompt:
 
 <pre>
-question  Build a starter application?
-      1)  Build a RailsApps example application
-      2)  Contributed applications
-      3)  Custom application
+option  Build a starter application?
+    1)  Build a RailsApps example application
+    2)  Contributed applications
+    3)  Custom application
 </pre>
 
 Enter "1" to select *Build a RailsApps example application*. You'll see a prompt:
 
 <pre>
-question  Starter apps for Rails 4.1. More to come.
-      1)  learn-rails
-      2)  rails-bootstrap
-      3)  rails-foundation
-      4)  rails-omniauth
-      5)  rails-devise
-      6)  rails-devise-pundit
+option  Choose a starter application.
+    1)  learn-rails
+    2)  rails-bootstrap
+    3)  rails-foundation
+    4)  rails-mailinglist-activejob
+    5)  rails-omniauth
+    6)  rails-devise
+    7)  rails-devise-roles
+    8)  rails-devise-pundit
+    9)  rails-signup-download
+   10)  rails-stripe-checkout
 </pre>
 
 Choose *rails-devise-pundit*. The Rails Composer tool may give you other options (other applications may have been added since these notes were written).
@@ -173,9 +177,9 @@ The application generator template will ask you for additional preferences:
        2)  RSpec with Capybara
  question  Front-end framework?
        1)  None
-       2)  Twitter Bootstrap 3.0
+       2)  Twitter Bootstrap 3.3
        3)  Twitter Bootstrap 2.3
-       4)  Zurb Foundation 5.0
+       4)  Zurb Foundation 5.5
        5)  Zurb Foundation 4.0
        6)  Simple CSS
     setup  The Devise 'forgot password' feature requires email.
@@ -198,9 +202,7 @@ The application generator template will ask you for additional preferences:
 
 h4. Web Servers
 
-We recommend Thin in development for speed and less noise in the log files.
-
-If you plan to deploy to Heroku, select Thin as your production webserver. Unicorn is recommended by Heroku but configuration is more complex.
+If you plan to deploy to Heroku, select Unicorn as your production webserver. Unicorn is recommended by Heroku.
 
 h4. Database
 
@@ -216,7 +218,7 @@ If you are a beginner, select "None."
 
 h4. Front-end Framework
 
-The example in the GitHub repository was built with the Bootstrap 3 front-end framework. Use Zurb Foundation 5.0 if you like. Choosing either Bootstrap or Foundation will automatically install views with attractive styling.
+The example in the GitHub repository was built with the Bootstrap 3 front-end framework. Use Zurb Foundation 5.5 if you like. Choosing either Bootstrap or Foundation will automatically install views with attractive styling.
 
 h4. Email
 
@@ -310,7 +312,7 @@ Use Bundler to install the gem:
 $ bundle install
 </pre>
 
-To create layout files for use with Zurb Foundation 5.0:
+To create layout files for use with Zurb Foundation 5.5:
 
 <pre>
 $ rails generate layout:install foundation5
@@ -506,12 +508,7 @@ h4. From the Command Line
 
 Alternatively, you can deploy from the command line.
 
-You'll need to precompile assets before you commit to git and push to Heroku:
-
 <pre>
-$ RAILS_ENV=production rake assets:precompile
-$ git add -A
-$ git commit -m "assets compiled for Heroku"
 $ git push origin master
 </pre>
 
@@ -522,12 +519,6 @@ $ heroku config:add ADMIN_NAME='First User'
 $ heroku config:add ADMIN_EMAIL='user@example.com' ADMIN_PASSWORD='changeme'
 $ heroku config:add GMAIL_USERNAME='myname@gmail.com' GMAIL_PASSWORD='secret'
 $ heroku config:add DOMAIN_NAME='example.com'
-</pre>
-
-Complete Heroku deployment with:
-
-<pre>
-$ git push heroku master
 </pre>
 
 See the "Tutorial for Rails on Heroku":http://railsapps.github.io/rails-heroku-tutorial.html for details.
@@ -583,7 +574,7 @@ h2. MIT License
 
 "MIT License":http://www.opensource.org/licenses/mit-license
 
-Copyright ©2014 Daniel Kehoe
+Copyright ©2014-15 Daniel Kehoe
 
 h2. Useful Links
 
